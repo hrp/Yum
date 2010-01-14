@@ -1,0 +1,24 @@
+!!!
+%html
+
+  %head
+    %title Hello World with Sinatra!
+    %link(rel="stylesheet" href="stylesheet.css")
+
+  %body
+    #topbar
+    #header
+      %h1 
+        Yum
+      #searchbox
+        %form(method="get" action="search")
+          %input(type="text" name="query" size="30" value="Yum")
+          %input(type="submit" value="Search")
+          
+      #results
+        .result
+          Test
+          
+          
+      #footer
+        &copy H10Labs 2010
