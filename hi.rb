@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'haml'
-require 'sass'
 require 'truveo'
 
 get '/stylesheet.css' do
