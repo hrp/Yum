@@ -24,5 +24,5 @@ get '/search' do
 end
 
 get '/*' do
-  haml:index
+  haml :index
 end
