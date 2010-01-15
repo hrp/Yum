@@ -33,10 +33,10 @@ a
   &:active
     color= !baseactive
 #header
-  font-size: 50px
+  font-size: 70px
   color= !bgcolor - #333
   font-weight: bold
-  line-height: 80px
+  line-height: 100px
   text-shadow: 0px 0px 9px #8a3a32
   
 h3
@@ -58,15 +58,29 @@ h3
 #searchbox 
   padding-bottom: 20px
   input
+    height: 28px
     font:
-      size: 30px
+      size: 28px
+      family: Helvetica, sans-serif
     border:
       width: 4px
       style: solid
       color= !base
-  input#searchbutton
-    background-color= !resultbg
-    color= !resultfont
+    padding: 8px
+    &:hover
+      border-color= !basehover
+    background-color= !resultbg + #999
+  #searchbutton
+    background-color= !resultbg - #105
+    border-color= !basehover    
+    padding: 0px 8px 0px 8px
+    color= !resultfont - #111
+    height: 52px
+    &:active
+      background-color= !resultbg - #205
+    &:hover
+      border-color= !baseactive
+ 
     
 #results
   align: center
@@ -107,8 +121,8 @@ ul
   margin: 0px  
   
 #footer
-  padding-top: 50px
+  padding: 50px 0px 20px 0px
   clear: both
   font-size: 12px
-  color= !resultbg
+  color= !resultbg - #111
   
