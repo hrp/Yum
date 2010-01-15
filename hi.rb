@@ -9,20 +9,25 @@ get '/stylesheet.css' do
 end
 
 get '/search' do
-  t = Truveo.new("08f3e5e3670ce918d")
-  @results = t.get_videos(params[:query])
-  
+  @query = params[:query]
+  @results = search_truveo(@query)
   
   @results.video_set.each do |vid|
-      if !vid['thumbnailUrlLarge'].nil?
-        vid['thumbnailUrl'] = vid['thumbnailUrlLarge']
-      end
-    end
-  
-  @query = params[:query]
+    vid['thumbnailUrl'] = vid['thumbnailUrlLarge'] if !vid['thumbnailUrlLarge'].nil?
+  end
+
   haml :search
 end
 
 get '/*' do
-  haml :index
+  @query = "Daft Punk"
+  @results = search_truveo(@query)
+  haml :search
 end
+
+def search_truveo(*query)
+  t = Truveo.new("08f3e5e3670ce918d")
+  query = "nfl:season_type=POST" if query.nil?
+  return t.get_videos(query)
+end
+  

@@ -20,11 +20,11 @@
           %input(type="submit" value="Search" id="searchbutton")
       %p
       #results
-        / #resultheader
-        /         %h4
-        /           = @results.total_results_returned
-        /           results for:
-        /           = @query
+        #resultheader
+          %h4
+            = @results.total_results_available.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join(',').reverse
+            results for:
+            = @query
         #resultvids
           %ul
             - @results.video_set.each do |vid|
@@ -53,8 +53,11 @@
                       = vid['dateFound']
                       %br
                       = vid['id']
-          
-                  
+
+        #resultpages
+          %span#next
+            - @results
+            = link_to 'search', query
     #footer
       &copy H10Labs 2010.
       Powered by 
