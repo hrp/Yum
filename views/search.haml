@@ -14,7 +14,6 @@
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-58268-8']);
         _gaq.push(['_trackPageview']);
-
         (function() {
           var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -48,18 +47,19 @@
                   %h3
                     %a{:href => vid['videoUrl'], :alt => vid['title']}
                       = vid['title']
-                  %div
-                    = vid['description']
-                  = vid['runtime']
-                  %span.source seconds long. From 
-                  = vid['channel']
-                  %span.tags 
-                    %br
-                    = vid['tags']
-                  %span.dateproduced 
-                    %br
+                  %span.runtime
+                    =vid['runtime']
+                    seconds 
+                  %span.dateproduced
                     = vid['dateFound']
-                    %br
+                  %div.description
+                    = vid['description']
+                  %div.channel 
+                    = vid['channel']
+                  %div.tags 
+                    = vid['tags']
+                  
+                  .vid
                     = vid['id']
 
         #resultpages

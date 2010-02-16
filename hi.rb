@@ -15,7 +15,7 @@ get '/search' do
   @results = search_truveo(@query, @page)
   
   @results.video_set.each do |vid|
-    vid['thumbnailUrl'] = vid['thumbnailUrlLarge'] if !vid['thumbnailUrlLarge'].nil?
+    # vid['thumbnailUrl'] = vid['thumbnailUrlLarge'] if !vid['thumbnailUrlLarge'].nil?
   end
 
   haml :search
