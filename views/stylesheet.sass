@@ -46,7 +46,13 @@ a
   font-weight: bold
   line-height: 100px
   background-color= !yellow
+
+.heart
+  color= !red
+  font-size: smaller
   
+strong
+  font-weight: bold
   
 #topbar
   background-color= black
@@ -89,28 +95,34 @@ a
 #results
   align: center
   background-color= !resultbg
-  padding: 30px
+  padding: 30px 30px 30px 30px
  
+#resultheader
+  padding-bottom: 90px
     
 .result
   background-color= !resultbg
-  padding: 10px 0px 30px 0px
+  padding: 30px 0px 10px 0px
   margin: 0px
   overflow: auto
   text-align: left
   
 .resultimg
   width: 120px
+  height: 90px
   margin: 0px
   float: left
   border: 1px gray solid
-  
+
   
 .resultinfo
   display:block
   margin-left: 130px
   h3
     font-size: 16px
+
+#resultpages
+  margin: 20px
     
 .dateproduced
   font-size: smaller
@@ -120,13 +132,17 @@ a
   font-size: smaller
   color= !gray
   
-.channel
+.channel a
   color= !green
   
 .tags
   font-style: italic
   font-size: smaller
-  color= !gray
+  a
+    color= !gray
+  li
+    clear: left
+  
   
 .vid
   font-size: 12px
@@ -138,7 +154,11 @@ ul
   margin: 0px  
   
 #footer
-  padding: 50px 0px 20px 0px
+  padding: 20px 0px 20px 0px
   clear: both
   font-size: 12px
+  color= !orange
+  /*background-color= !gray + #888
+  a
+    color= !orange
   

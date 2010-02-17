@@ -28,50 +28,64 @@
           %input(type="text" name="query" size="30" value=@query)
           %input(type="submit" value="Search" id="searchbutton")
       %p
-      #results
-        #resultheader
-          %h4
-            = @results.total_results_available.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join(',').reverse
-            results for:
-            %b
-              = @query
-        #resultvids
-          %ul
-            = list_of(@results.video_set) do |vid|
+      - if @results
+        #results
+          #resultheader
+            %h4
+              = @results.total_results_available.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join(',').reverse if @results
+              results for:
+              %b
+                = @query
+            
+            #resultvids
+              %ul
+                = list_of(@results.video_set) do |vid|
 
-              .result
-                .resultimg
-                  %a{:href => vid['videoUrl'], :alt => vid['title']}
-                    %img{:src => vid["thumbnailUrl"], :class => "thumbnail"}
-                .resultinfo
-                  %h3
-                    %a{:href => vid['videoUrl'], :alt => vid['title']}
-                      = vid['title']
-                  %span.runtime
-                    =vid['runtime']
-                    seconds 
-                  %span.dateproduced
-                    = vid['dateFound']
-                  %div.description
-                    = vid['description']
-                  %div.channel 
-                    = vid['channel']
-                  %div.tags 
-                    = vid['tags']
-                  
-                  .vid
-                    = vid['id']
-
-        #resultpages
-          - next_page = @page.to_i + 1
-          - prev_page = @page.to_i - 1
-          - if prev_page > 0
-            %a{:href => l("search", {"query" => @query, "page" => prev_page})} Back!
-          = "This is page #{@page}."
-          %a{:href => l("search", {"query" => @query, "page" => next_page})} More!
-        
+                  .result
+                    .resultimg
+                      %a{:href => vid['videoUrl'], :alt => vid['title']}
+                        %img{:src => vid["thumbnailUrl"], :class => "thumbnail"}
+                    .resultinfo
+                      %h3
+                        %a{:href => vid['videoUrl'], :alt => vid['title']}
+                          = vid['title'].gsub(/(#{@query})/i, '<strong>\1</strong>')
+                      -if vid['runtime']
+                        %span.runtime
+                          =vid['runtime']
+                          \-
+                      %span.dateproduced 
+                        Found
+                        = vid['dateFound']
+                      - unless vid['description'].nil?
+                        .description
+                          = vid['description'].gsub(/(#{@query})/i, '<strong>\1</strong>')
+                      .channel
+                        %a{:href => l("search", {"query" => 'channel:""' + vid['channel'] + '"'})}
+                          = vid['channel']
+                      -if vid['tags']
+                        .tags 
+                          - (vid['tags'].split(',')).each do |tag|
+                            %a{:href => l("search", {"query" => tag.strip})}= tag.gsub(/(#{@query})/i, '<strong>\1</strong>')
+                      .vid
+                        = vid['id']
+    
+            #resultpages
+              - next_page = @page.to_i + 1
+              - prev_page = @page.to_i - 1
+              - if prev_page > 0
+                %a{:href => l("search", {"query" => @query, "page" => prev_page})} Back!
+              = "This is page #{@page}."
+              %a{:href => l("search", {"query" => @query, "page" => next_page})} More!
+      
 
     #footer
-      = "&copy H10Labs #{Time.new.year()}."
-      Powered by
-      %a(href="http://www.truveo.com")< Truveo.      
+      Yum 
+      %span.heart ♥ 
+      video 
+      %br
+      from all over the web
+      %br
+      %br
+      = "☺ h10 labs #{Time.new.year()}."
+      powered by
+      %a(href="http://www.truveo.com")< truveo.      
