@@ -17,7 +17,7 @@
           %h1 Yum 
         #searchbox
           %form(method="get" action="search")
-            %input(type="text" name="query" size="50" value=@query)
+            %input(type="text" name="query" size="40" value=@query)
             %input(type="submit" value="Search" id="searchbutton")
       %p
       - if @results
@@ -65,23 +65,23 @@
               - next_page = @page.to_i + 1
               - prev_page = @page.to_i - 1
               - if prev_page > 0
-                %a{:href => l("search", {"query" => @query, "page" => prev_page})} Back!
+                %a{:href => l("search", {"query" => @query, "page" => prev_page})} <<
               = "This is page #{@page}."
-              %a{:href => l("search", {"query" => @query, "page" => next_page})} More!
+              %a{:href => l("search", {"query" => @query, "page" => next_page})} >>
       
-      #resultads
-        :plain
-          <script type="text/javascript"><!--
-          google_ad_client = "pub-6061052847545837";
-          /* 468x60, created 2/21/10 */
-          google_ad_slot = "7787828628";
-          google_ad_width = 468;
-          google_ad_height = 60;
-          //-->
-          </script>
-          <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-          </script>
+          #resultads
+            :plain
+              <script type="text/javascript"><!--
+              google_ad_client = "pub-6061052847545837";
+              /* 468x60, created 2/21/10 */
+              google_ad_slot = "7787828628";
+              google_ad_width = 468;
+              google_ad_height = 60;
+              //-->
+              </script>
+              <script type="text/javascript"
+              src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+              </script>
 
     #footer
       Yum 
