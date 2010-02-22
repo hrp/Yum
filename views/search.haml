@@ -14,9 +14,11 @@
       #topbar
       #header
         #title
-          %h1 Yum 
+          %h1 
+            %a{:href => l("")} Yum 
         #searchbox
           %form(method="get" action="search")
+            - @query = "Search..." unless @results
             %input(type="text" name="query" size="40" value=@query)
             %input(type="submit" value="Search" id="searchbutton")
       %p
@@ -66,7 +68,7 @@
               - prev_page = @page.to_i - 1
               - if prev_page > 0
                 %a{:href => l("search", {"query" => @query, "page" => prev_page})} <<
-              = "This is page #{@page}."
+              = "#{@page}"
               %a{:href => l("search", {"query" => @query, "page" => next_page})} >>
       
           #resultads
