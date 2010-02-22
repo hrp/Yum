@@ -10,23 +10,15 @@
 
   %body
     #body
-      :javascript
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-58268-8']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-        })();
+
       #topbar
       #header
-        %h1 
-          %span(id="title") Yum 
-      #searchbox
-        %form(method="get" action="search")
-          %input(type="text" name="query" size="30" value=@query)
-          %input(type="submit" value="Search" id="searchbutton")
+        #title
+          %h1 Yum 
+        #searchbox
+          %form(method="get" action="search")
+            %input(type="text" name="query" size="50" value=@query)
+            %input(type="submit" value="Search" id="searchbutton")
       %p
       - if @results
         #results
@@ -37,37 +29,37 @@
               %b
                 = @query
             
-            #resultvids
-              %ul
-                = list_of(@results.video_set) do |vid|
+          #resultvids
+            %ul
+              = list_of(@results.video_set) do |vid|
 
-                  .result
-                    .resultimg
+                .result
+                  .resultimg
+                    %a{:href => vid['videoUrl'], :alt => vid['title']}
+                      %img{:src => vid["thumbnailUrl"], :class => "thumbnail"}
+                  .resultinfo
+                    %h3
                       %a{:href => vid['videoUrl'], :alt => vid['title']}
-                        %img{:src => vid["thumbnailUrl"], :class => "thumbnail"}
-                    .resultinfo
-                      %h3
-                        %a{:href => vid['videoUrl'], :alt => vid['title']}
-                          = vid['title'].gsub(/(#{@query})/i, '<strong>\1</strong>')
-                      -if vid['runtime']
-                        %span.runtime
-                          =vid['runtime']
-                          \-
-                      %span.dateproduced 
-                        Found
-                        = vid['dateFound']
-                      - unless vid['description'].nil?
-                        .description
-                          = vid['description'].gsub(/(#{@query})/i, '<strong>\1</strong>')
-                      .channel
-                        %a{:href => l("search", {"query" => 'channel:""' + vid['channel'] + '"'})}
-                          = vid['channel']
-                      -if vid['tags']
-                        .tags 
-                          - (vid['tags'].split(',')).each do |tag|
-                            %a{:href => l("search", {"query" => tag.strip})}= tag.gsub(/(#{@query})/i, '<strong>\1</strong>')
-                      .vid
-                        = vid['id']
+                        = vid['title'].gsub(/(#{@query})/i, '<strong>\1</strong>')
+                    -if vid['runtime']
+                      %span.runtime
+                        =vid['runtime']
+                        \-
+                    %span.dateproduced 
+                      Found
+                      = vid['dateFound']
+                    - unless vid['description'].nil?
+                      .description
+                        = vid['description'].gsub(/(#{@query})/i, '<strong>\1</strong>')
+                    .channel
+                      %a{:href => l("search", {"query" => 'channel:""' + vid['channel'] + '"'})}
+                        = vid['channel']
+                    -if vid['tags']
+                      .tags 
+                        - (vid['tags'].split(',')).each do |tag|
+                          %a{:href => l("search", {"query" => tag.strip})}= tag.gsub(/(#{@query})/i, '<strong>\1</strong>')
+                    .vid
+                      = vid['id']
     
             #resultpages
               - next_page = @page.to_i + 1
@@ -77,6 +69,19 @@
               = "This is page #{@page}."
               %a{:href => l("search", {"query" => @query, "page" => next_page})} More!
       
+      #resultads
+        :plain
+          <script type="text/javascript"><!--
+          google_ad_client = "pub-6061052847545837";
+          /* 120x600, Yum */
+          google_ad_slot = "7202037886";
+          google_ad_width = 120;
+          google_ad_height = 600;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
 
     #footer
       Yum 
@@ -87,5 +92,14 @@
       %br
       %br
       = "☺ h10 labs #{Time.new.year()}."
-      powered by
-      %a(href="http://www.truveo.com")< truveo.      
+      thanks 
+      %a(href="http://www.truveo.com")< truveo!
+    :javascript
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-58268-8']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+      })();
