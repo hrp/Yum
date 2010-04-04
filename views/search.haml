@@ -38,7 +38,7 @@
                 .result
                   .resultimg
                     %a{:href => vid['videoUrl'], :alt => vid['title']}
-                      %img{:src => vid["thumbnailUrl"], :class => "thumbnail"}
+                      %img{:src => vid["thumbnailUrl"], :class => "thumbnail", :width => "120px"}
                   .resultinfo
                     %h3
                       %a{:href => vid['videoUrl'], :alt => vid['title']}
@@ -54,12 +54,12 @@
                       .description
                         = vid['description'].gsub(/(#{@query})/i, '<strong>\1</strong>')
                     .channel
-                      %a{:href => l("search", {"query" => 'channel:""' + vid['channel'] + '"'})}
+                      %a{:href => l("search", {"query" => 'channel:"' + vid['channel'] + '"'})}
                         = vid['channel']
                     -if vid['tags']
                       .tags 
                         - (vid['tags'].split(',')).each do |tag|
-                          %a{:href => l("search", {"query" => tag.strip})}= tag.gsub(/(#{@query})/i, '<strong>\1</strong>')
+                          %a{:href => l("search", {"query" => "tag:\"" + tag.strip + "\""})}= tag.gsub(/(#{@query})/i, '<strong>\1</strong>')
                     .vid
                       = vid['id']
     

@@ -3,13 +3,14 @@
 
 !base= blue
 !yellow = rgb(242, 242, 0)
+!yellow_highlight = #F7F7AA
 !bgcolor = #fff
 !color = #fff
 !body = #000
 !gray = #666
 !green = green
 !red = rgb(204, 0, 0)
-!orange = #ddd
+!orange = #bbb
 
 !basehover = !base - #333
 !baseactive = !base - #666
@@ -90,6 +91,8 @@ strong
   margin: 0px
   padding: 0px
   
+  
+  
   #resultads
     float: right
   
@@ -132,6 +135,11 @@ strong
       .runtime
         font-size: smaller
         color= !gray
+        
+      .description
+        strong
+          font-weight: bold
+          background-color= !yellow_highlight
   
       .channel a
         color= !green
