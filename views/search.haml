@@ -58,13 +58,14 @@
                   Any duration
               - else
                 Any duration
-              - {"runtime:<4" => "Short (0-4 min)", "runtime:>4 and runtime:<20" => "Medium (4-20 min)", "runtime:>20" => "Long (+20 min)"}.each do |term, words|
-                %li 
-                - unless @query_modified && @query_modified.include?(term)
-                  %a{:href => l("search", {"query" => @query, "query_modified" => term})}
+              - [{"runtime:<4" => "Short (0-4 min)"}, {"runtime:>4 and runtime:<20" => "Medium (4-20 min)"}, {"runtime:>20" => "Long (+20 min)"}].each do |item|
+                -item.each do |term, words|
+                  %li 
+                  - unless @query_modified && @query_modified.include?(term)
+                    %a{:href => l("search", {"query" => @query, "query_modified" => term})}
+                      =words
+                  - else
                     =words
-                - else
-                  =words
               
             %ul
               %li 
