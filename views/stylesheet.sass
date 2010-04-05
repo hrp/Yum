@@ -90,9 +90,22 @@ strong
   background-color= !resultbg
   margin: 0px
   padding: 0px
+  ul
+    list-style-type: none
   
-  
-  
+  #resultoptions
+    display: block
+    //position: absolute
+    float: left
+    font-size: smaller
+    padding: 0px 10px 10px 15px
+    ul
+      padding-bottom: 10px
+    font-weight: bold
+    a
+      font-weight: normal
+    border-right: 1px #bbf dotted
+    
   #resultads
     float: right
   
@@ -100,61 +113,64 @@ strong
     padding: 2px 2px 4px 10px
     background-color: #ddd
     color: #333
-    margin-bottom: 5px
+    margin-bottom: 15px
     
-  ul
-    list-style-type: none
-    padding: 0px
-    margin: 0px
-    
-  .result
-    width: 890px
-    background-color= !resultbg
-    padding: 15px 0px 10px 20px
-    margin: 0px
-    overflow: auto
-    text-align: left
-  
-    .resultimg
-      width: 120px
-      height: 90px
+  #resultvids
+    display: block
+    float: left
+    ul
+      list-style-type: none
+      padding: 0px
       margin: 0px
-      float: left
-      border: 1px gray solid
-  
-    .resultinfo
-      display:block
-      margin-left: 135px
-      h3
-        font-size: 16px
     
-      .dateproduced
-        font-size: smaller
-        color= !gray
+    .result
+      width: 890px
+      background-color= !resultbg
+      padding: 0px 0px 20px 20px
+      margin: 0px
+      overflow: auto
+      text-align: left
   
-      .runtime
-        font-size: smaller
-        color= !gray
-        
-      .description
-        strong
-          font-weight: bold
-          background-color= !yellow_highlight
+      .resultimg
+        width: 160px
+        height: 120px
+        margin: 0px
+        float: left
+        border: 1px gray solid
   
-      .channel a
-        color= !green
-  
-      .tags
-        font-style: italic
-        font-size: smaller
-        a
+      .resultinfo
+        display:block
+        margin-left: 175px
+        h3
+          font-size: 16px
+    
+        .dateproduced
+          font-size: smaller
           color= !gray
-        li
-          clear: left
   
-      .vid
-        font-size: 12px
-        color= !orange
+        .runtime
+          font-size: smaller
+          color= !gray
+        
+        .description
+          strong
+            font-weight: bold
+            background-color= !yellow_highlight
+  
+        .channel a
+          color= !green
+  
+        .tags
+          font-style: italic
+          font-size: smaller
+          a
+            color= !gray
+          li
+            clear: left
+  
+        .vid
+          font-size: 12px
+          color= !orange
   
   #resultpages
     text-align: center
