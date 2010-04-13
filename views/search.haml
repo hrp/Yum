@@ -28,9 +28,8 @@
               %input(type="submit" value="Search" id="searchbutton")
           #fb
             :plain
-              <fb:login-button autologoutlink=true v="2" size="medium" onlogin="window.location.reload(true);">Goes great with Facebook</fb:login-button>
-              <fb:name uid="loggedinuser" useyou="false" linked="true"></fb:name>      
-          
+              <fb:login-button autologoutlink="true" v="2" size="medium" onlogin="window.location.reload(true);">Goes great with Facebook</fb:login-button>
+                        
         %p
       - unless @results.nil?
         #results
