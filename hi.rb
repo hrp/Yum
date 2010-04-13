@@ -25,6 +25,7 @@ get '/search' do
   @results.video_set.each do |vid|
     vid['thumbnailUrl'] = vid['thumbnailUrlLarge'] if !vid['thumbnailUrlLarge'].nil?
     p vid['dateFound']
+    p vid
     vid_time = Time.parse(vid['dateFound'])
     vid['dateFound'] = vid_time.strftime('%I:%M%p').downcase.gsub(/^0/, '').downcase
     vid['dateFound'] << vid_time.strftime(' %b %d, %Y')

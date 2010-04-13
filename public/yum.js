@@ -33,10 +33,10 @@ $(document).ready(function() {
   // in-field labels
   Yum.labelHints('input');
   
-  $('.optiontoggle').click(function(event){
+  $('.playembed').click(function(event){
     //alert("Clicked!");
-    $('#resultoptions').toggle();
-    // $('#resultvids').css('border-left', '1px #bbf dotted')
+    $(this).children('#embed').toggle();
+    // $('#player').append(self.code)
   });
 
 })

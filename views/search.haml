@@ -14,156 +14,172 @@
     #body
 
       #topbar
-      #header
-        #title
-          %h1 
+      #header 
+        #contents
+          #title
+            %h1 
             %a{:href => l("")} Yum 
-        #searchbox
-          %form(method="get" action="search")
-            / # - @query = "Search..." unless @results
-            %input(type="text" name="query" size="40" value=@query title="find tasty web videos")
-            %input(type="submit" value="Search" id="searchbutton")
+          #searchbox
+            %form(method="get" action="search")
+              / # - @query = "Search..." unless @results
+              %input(type="text" name="query" size="50" value=@query title="find tasty web videos")
+              %input(type="submit" value="Search" id="searchbutton")
       %p
       - unless @results.nil?
         #results
           #resultheader
-            %h4
-              %span.optiontoggle
-                %a Options
-              = @results.total_results_available.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join(',').reverse if @results
-              results for:
-              %b
-                = @query
-            
-          #resultoptions
-            %ul
-              %li 
-              - if @query_modified && @query_modified[/sort/]
-                %a{:href => l("search", {"query" => @query})}
-                  Sort by relevance
-              - else
-                Sort by relevance
-              - {"sort:mostRecent" => "Sort by date", "sort:mostPopular" => "Sort by popularity"}.each do |term, words|
-                %li 
-                - unless @query_modified && @query_modified.include?(term)
-                  %a{:href => l("search", {"query" => @query, "query_modified" => term})}
-                    =words
-                - else
-                  =words
-              
-            %ul
-              %li 
-              - if @query_modified && @query_modified[/runtime/]
-                %a{:href => l("search", {"query" => @query})}
-                  Any duration
-              - else
-                Any duration
-              - [{"runtime:<4" => "Short (0-4 min)"}, {"runtime:>4 and runtime:<20" => "Medium (4-20 min)"}, {"runtime:>20" => "Long (+20 min)"}].each do |item|
-                -item.each do |term, words|
+            #contents-
+              %h4
+                %span.optiontoggle
+                  %a Options
+                = @results.total_results_available.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join(',').reverse if @results
+                results for:
+                %b= @query
+          
+          #resultbody
+            #contents
+              #resultoptions
+                %ul
                   %li 
-                  - unless @query_modified && @query_modified.include?(term)
-                    %a{:href => l("search", {"query" => @query, "query_modified" => term})}
-                      =words
+                  - if @query_modified && @query_modified[/sort/]
+                    %a{:href => l("search", {"query" => @query})}
+                      Sort by relevance
                   - else
-                    =words
+                    Sort by relevance
+                  - {"sort:mostRecent" => "Sort by date", "sort:mostPopular" => "Sort by popularity"}.each do |term, words|
+                    %li 
+                    - unless @query_modified && @query_modified.include?(term)
+                      %a{:href => l("search", {"query" => @query, "query_modified" => term})}
+                        =words
+                    - else
+                      =words
               
-            %ul
-              %li 
-              - if @query_modified && @query_modified[/channel/]
-                %a{:href => l("search", {"query" => @query})}
-                  Any source
-              - else
-                Any source
-              - {"-channel:YouTube" => "Professional", "channel:YouTube" => "Only user-generated"}.each do |term, words|
-                %li 
-                - unless @query_modified && @query_modified.include?(term)
-                  %a{:href => l("search", {"query" => @query, "query_modified" => term})}
-                    =words
-                - else
-                  =words
+                %ul
+                  %li 
+                  - if @query_modified && @query_modified[/runtime/]
+                    %a{:href => l("search", {"query" => @query})}
+                      Any duration
+                  - else
+                    Any duration
+                  - [{"runtime:<4" => "Short (0-4 min)"}, {"runtime:>4 and runtime:<20" => "Medium (4-20 min)"}, {"runtime:>20" => "Long (+20 min)"}].each do |item|
+                    -item.each do |term, words|
+                      %li 
+                      - unless @query_modified && @query_modified.include?(term)
+                        %a{:href => l("search", {"query" => @query, "query_modified" => term})}
+                          =words
+                      - else
+                        =words
+              
+                %ul
+                  %li 
+                  - if @query_modified && @query_modified[/channel/]
+                    %a{:href => l("search", {"query" => @query})}
+                      Any source
+                  - else
+                    Any source
+                  - {"-channel:YouTube" => "Professional", "channel:YouTube" => "Only user-generated"}.each do |term, words|
+                    %li 
+                    - unless @query_modified && @query_modified.include?(term)
+                      %a{:href => l("search", {"query" => @query, "query_modified" => term})}
+                        =words
+                    - else
+                      =words
             
-            %ul
-              %li 
-              - if @query_modified && @query_modified[/category/]
-                %a{:href => l("search", {"query" => @query})}
-                  Any category
-              - else
-                Any category
-              - {"category:News" => "News", "category:Sports" => "Sports", "category:Music" => "Music", "category:TV" => "Television", "category:Movies" => "Movies"}.each do |term, words|
-                %li 
-                - unless @query_modified && @query_modified.include?(term)
-                  %a{:href => l("search", {"query" => @query, "query_modified" => term})}
-                    =words
-                - else
-                  =words
+                %ul
+                  %li 
+                  - if @query_modified && @query_modified[/category/]
+                    %a{:href => l("search", {"query" => @query})}
+                      Any category
+                  - else
+                    Any category
+                  - {"category:News" => "News", "category:Sports" => "Sports", "category:Music" => "Music", "category:TV" => "Television", "category:Movies" => "Movies"}.each do |term, words|
+                    %li 
+                    - unless @query_modified && @query_modified.include?(term)
+                      %a{:href => l("search", {"query" => @query, "query_modified" => term})}
+                        =words
+                    - else
+                      =words
     
-          #resultvids
-            %ul
-              = list_of(@results.video_set) do |vid|
+            #resultvids
+              %ul
+                = list_of(@results.video_set) do |vid|
 
-                .result
-                  .resultimg
-                    %a{:href => vid['videoUrl'], :alt => vid['title']}
-                      %img{:src => vid["thumbnailUrl"], :class => "thumbnail", :width => "160px"}
-                  .resultinfo
-                    %h3
+                  .result
+                    .resultimg
                       %a{:href => vid['videoUrl'], :alt => vid['title']}
-                        = vid['title'].gsub(/(#{@query})/i, '<strong>\1</strong>')
-                    -if vid['runtime']
-                      %span.runtime
-                        =vid['runtime']
-                        \-
-                    %span.dateproduced 
-                      Found
-                      = vid['dateFound']
-                    - unless vid['description'].nil?
-                      .description
-                        = vid['description'].gsub(/(#{@query})/i, '<strong>\1</strong>')
-                    .channel
-                      %a{:href => l("search", {"query" => 'channel:"' + vid['channel'] + '"'})}
-                        = vid['channel']
-                    -if vid['tags']
-                      .tags 
-                        - (vid['tags'].split(',')).each do |tag|
-                          %a{:href => l("search", {"query" => "tag:\"" + tag.strip + "\""})}= tag.gsub(/(#{@query})/i, '<strong>\1</strong>')
-                    .vid
-                      = vid['id']
+                        %img{:src => vid["thumbnailUrl"], :class => "thumbnail", :width => "160px"}
+                    .resultinfo
+                      %h3
+                        %a{:href => vid['videoUrl'], :alt => vid['title']}<
+                          = vid['title'].gsub(/(#{@query})/i, '<strong>\1</strong>')
+                        &nbsp;
+                      
+                        -if !vid['videoPlayerEmbedTag'].nil?
+                          %span.playembed{:code => vid['videoPlayerEmbedTag']}
+                            %a 
+                              %img{:src => 'video_red.png'}>
+                            #embed
+                              =vid['videoPlayerEmbedTag']
+                      -if vid['runtime']
+                        %span.runtime
+                          =vid['runtime']
+                          \-
+                      %span.dateproduced 
+                        Found
+                        = vid['dateFound']
+                      - unless vid['description'].nil?
+                        .description
+                          = vid['description'].gsub(/(#{@query})/i, '<strong>\1</strong>')
+                      .channel
+                        %a{:href => l("search", {"query" => 'channel:"' + vid['channel'] + '"'})}
+                          = vid['channel']
+                      -if vid['tags']
+                        .tags 
+                          - (vid['tags'].split(',')).each do |tag|
+                            %a{:href => l("search", {"query" => "tag:\"" + tag.strip + "\""})}= tag.gsub(/(#{@query})/i, '<strong>\1</strong>')
+                      .vid
+                        = vid['id']
     
-            #resultpages
-              - next_page = @page.to_i + 1
-              - prev_page = @page.to_i - 1
-              - if prev_page > 0
-                %a{:href => l("search", {"query" => @query, "page" => prev_page})} <<
-              = "#{@page}"
-              %a{:href => l("search", {"query" => @query, "page" => next_page})} >>
+              #resultpages
+                - next_page = @page.to_i + 1
+                - prev_page = @page.to_i - 1
+                - if prev_page > 0
+                  %a{:href => l("search", {"query" => @query, "page" => prev_page})} <<
+                - (1..10).each do |page|
+                  - if @page.to_i == page
+                    =page
+                  - else
+                    %a{:href => l("search", {"query" => @query, "page" => page})}<
+                      =page 
+                %a{:href => l("search", {"query" => @query, "page" => next_page})} >>
       
-          #resultads
-            :plain
-              <script type="text/javascript"><!--
-              google_ad_client = "pub-6061052847545837";
-              /* 468x60, created 2/21/10 */
-              google_ad_slot = "7787828628";
-              google_ad_width = 468;
-              google_ad_height = 60;
-              //-->
-              </script>
-              <script type="text/javascript"
-              src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-              </script>
+            #resultads
+              :plain
+                <script type="text/javascript"><!--
+                google_ad_client = "pub-6061052847545837";
+                /* 468x60, created 2/21/10 */
+                google_ad_slot = "7787828628";
+                google_ad_width = 468;
+                google_ad_height = 60;
+                //-->
+                </script>
+                <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
               
-    
+          #wrapper
+            #player
 
     #footer
       Yum 
       %span.heart ♥ 
       video 
-      %br
       from all over the web
-      %br
       %br
       = "☺ h10 labs #{Time.new.year()}."
       thanks 
-      %a(href="http://www.truveo.com")< truveo!
+      %a(href="http://www.truveo.com")< truveo
+      !
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-58268-8']);
