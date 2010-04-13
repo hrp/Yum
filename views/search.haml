@@ -11,6 +11,8 @@
     %link(rel="stylesheet" href="stylesheet.css")
 
   %body
+    :plain
+      <script src="http://static.ak.connect.facebook.com/connect.php/en_US" type="text/javascript"></script><script type="text/javascript">FB.init("b8f9b4d82f6785ca2d4cea39d8318969");</script>
     #body
 
       #topbar
@@ -24,7 +26,12 @@
               / # - @query = "Search..." unless @results
               %input(type="text" name="query" size="50" value=@query title="find tasty web videos")
               %input(type="submit" value="Search" id="searchbutton")
-      %p
+          #fb
+            :plain
+              <fb:login-button v="2" size="medium" onlogin="window.location.reload(true);">Goes great with Facebook</fb:login-button>
+              <fb:name uid="loggedinuser" useyou="false" linked="true"></fb:name>      
+          
+        %p
       - unless @results.nil?
         #results
           #resultheader
