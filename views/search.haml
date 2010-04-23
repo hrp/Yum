@@ -12,9 +12,20 @@
 
   %body
     :plain
-      <script src="http://static.ak.connect.facebook.com/connect.php/en_US" type="text/javascript"></script><script type="text/javascript">FB.init("b8f9b4d82f6785ca2d4cea39d8318969");</script>
-    #body
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({appId: 'b8f9b4d82f6785ca2d4cea39d8318969', status: true, cookie: true, xfbml: true});
+        };
+        (function() {
+          var e = document.createElement('script'); e.async = true;
+          e.src = document.location.protocol +
+            '//connect.facebook.net/en_US/all.js';
+          document.getElementById('fb-root').appendChild(e);
+        }());
+      </script>
 
+    #body
       #topbar
       #header 
         #title
@@ -26,9 +37,12 @@
             %input(type="text" name="query" size="50" value=@query title="find tasty web videos")
             %input(type="submit" value="Search" id="searchbutton")
         #fb
-          :plain
-            <fb:login-button autologoutlink="true" v="2" size="medium" onlogin="window.location.reload(true);"></fb:login-button>
-            <fb:like href="http://yum.heroku.com" layout="standard" show_faces="true" width="200" action="like" colorscheme="light" />
+          #fb_login
+            :plain
+              <fb:login-button autologoutlink="true" v="2" size="medium" onlogin="window.location.reload(true);"></fb:login-button>
+          #fb_like  
+            :plain
+              <fb:like href="http://yum.heroku.com" layout="standard" show_faces="true" width="100" action="like" colorscheme="light" />
                         
         %p
       - unless @results.nil?
