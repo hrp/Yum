@@ -44,15 +44,12 @@ a
 strong
   font-weight: bold
     
-#contents
-  //margin-left: auto
-  //margin-right: auto
-  //width: 1080px
 
 #header
   background-color= !yellow
   border-bottom: 4px gray solid
   padding: 30px 0px 30px 0px
+  position: relative
   
   #title
     float: left
@@ -89,10 +86,10 @@ strong
         background-color= !red - #205
       &:hover
         background-color= !red - #205
-    #fb
-      float: none
-      align: right
-      clear: left
+  #fb
+    position: absolute
+    right: 10px
+    top: 10px
     
 #results
   clear: both

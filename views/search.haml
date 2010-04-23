@@ -17,18 +17,17 @@
 
       #topbar
       #header 
-        #contents
-          #title
-            %h1 
-            %a{:href => l("")} Yum 
-          #searchbox
-            %form(method="get" action="search")
-              / # - @query = "Search..." unless @results
-              %input(type="text" name="query" size="50" value=@query title="find tasty web videos")
-              %input(type="submit" value="Search" id="searchbutton")
-          #fb
-            :plain
-              <fb:login-button autologoutlink="true" v="2" size="medium" onlogin="window.location.reload(true);"></fb:login-button>
+        #title
+          %h1 
+          %a{:href => l("")} Yum 
+        #searchbox
+          %form(method="get" action="search")
+            / # - @query = "Search..." unless @results
+            %input(type="text" name="query" size="50" value=@query title="find tasty web videos")
+            %input(type="submit" value="Search" id="searchbutton")
+        #fb
+          :plain
+            <fb:login-button autologoutlink="true" v="2" size="medium" onlogin="window.location.reload(true);"></fb:login-button>
                         
         %p
       - unless @results.nil?
