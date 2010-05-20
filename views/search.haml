@@ -34,17 +34,22 @@
         #searchbox
           %form(method="get" action="search")
             / # - @query = "Search..." unless @results
-            %input(type="text" name="query" size="50" value=@query title="find tasty web videos")
+            %input(type="text" name="query" size="46" value=@query title="find tasty web videos")
             %input(type="submit" value="Search" id="searchbutton")
         #fb
           #fb_login
             :plain
               <fb:login-button autologoutlink="true" v="2" size="medium" onlogin="window.location.reload(true);"></fb:login-button>
+        / 
           #fb_like  
             :plain
               <fb:like href="http://yum.heroku.com" layout="standard" show_faces="true" width="100" action="like" colorscheme="light" />
                         
         %p
+      - if @results.nil?
+        #results
+          - 25.times do
+            %p &nbsp;
       - unless @results.nil?
         #results
           #resultheader
@@ -55,6 +60,9 @@
                 = @results.total_results_available.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join(',').reverse if @results
                 results for:
                 %b= @query
+          
+          #resultbuffer
+            &nbsp;
           
           #resultbody
             #contents
@@ -127,7 +135,7 @@
                   .result
                     .resultimg
                       %a{:href => vid['videoUrl'], :alt => vid['title']}
-                        %img{:src => vid["thumbnailUrl"], :class => "thumbnail", :width => "160px"}
+                        %img{:src => vid["thumbnailUrl"], :class => "thumbnail", :width => "160px", :height => "120px"}
                     .resultinfo
                       %h3
                         %a{:href => vid['videoUrl'], :alt => vid['title']}<
@@ -190,16 +198,16 @@
           #wrapper
             #player
 
-    #footer
-      Yum 
-      %span.heart ♥ 
-      video 
-      from all over the web
-      %br
-      = "☺ h10 labs #{Time.new.year()}."
-      thanks 
-      %a(href="http://www.truveo.com")< truveo
-      !
+      #footer
+        Yum 
+        %span.heart ♥ 
+        video 
+        from all over the web
+        %br
+        = "☺ h10 labs #{Time.new.year()}."
+        thanks 
+        %a(href="http://www.truveo.com")< truveo
+        !
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-58268-8']);

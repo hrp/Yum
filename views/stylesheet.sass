@@ -11,6 +11,7 @@
 !green = green
 !red = rgb(204, 0, 0)
 !orange = #bbb
+!darkbg =  #7f7e77
 
 !basehover = !base - #333
 !baseactive = !base - #666
@@ -27,11 +28,14 @@ body
   top: 0px
   padding: 0px
   margin: 0px
-  background-color= !bgcolor
+  background-color= !darkbg
   text-align: left
   font-size: 14px
   line-height: 18px
+  background-image: url('bgyum.png')
+  background-repeat: repeat-x
   
+
 a
   text-decoration: underline
   color= !basehover
@@ -43,8 +47,17 @@ a
 
 strong
   font-weight: bold
-    
 
+#body
+  width: 960px
+  margin: 0em auto
+  background-color: #fff
+  //border: 1px solid #000
+  !shadow = 0px 0px 15px #333
+  box-shadow: !shadow
+  -moz-box-shadow: !shadow
+  -webkit-box-shadow: !shadow
+  
 #header
   background-color= !yellow
   border-bottom: 4px gray solid
@@ -103,11 +116,12 @@ strong
     list-style-type: none
   
   #resultoptions
+    background-color: #fff
     display: block
     //position: absolute
     float: left
     font-size: smaller
-    padding: 0px 10px 10px 15px
+    padding: 0px 10px 1000px 15px
     ul
       padding-bottom: 10px
     font-weight: bold
@@ -123,6 +137,9 @@ strong
     background-color: #ddd
     color: #333
     margin-bottom: 15px
+  
+  #resultbuffer
+    background-color: #fff
     
   #resultvids
     display: block
@@ -208,9 +225,9 @@ strong
     background-color= !red
     
 #footer
-  text-align: left
-  width: 1000px
-  padding: 100px 10px 20px 20px
+  padding: 6em 0 2em 0
+  background-color: #fff
+  text-align: center
   clear: both
   font-size: 12px
   color= !orange
