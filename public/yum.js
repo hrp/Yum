@@ -33,6 +33,10 @@ $(document).ready(function() {
   // in-field labels
   Yum.labelHints('input');
   
+  $('.optiontoggle').click(function(event){
+    $('#resultoptions').toggle();
+  });
+  
   $('.playembed').click(function(event){
     //alert("Clicked!");
     $(this).children('#embed').toggle();
