@@ -34,12 +34,12 @@ $(document).ready(function() {
   Yum.labelHints('input');
   
   $('.optiontoggle').click(function(event){
-    $('#resultoptions').toggle();
+    $('#resultoptions').toggle('slow');
   });
   
   $('.playembed').click(function(event){
     //alert("Clicked!");
-    $(this).children('#embed').toggle();
+    $(this).children('#embed').toggle('fast');
     // $('#player').append(self.code)
   });
 

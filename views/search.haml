@@ -34,7 +34,7 @@
         #searchbox
           %form(method="get" action="search")
             / # - @query = "Search..." unless @results
-            %input(type="text" name="query" size="46" value=@query title="find tasty web videos")
+            %input(type="text" name="query" size="46" value=@query title="Find the tasty")
             %input(type="submit" value="Search" id="searchbutton")
         #fb
           #fb_login
@@ -48,7 +48,11 @@
         %p
       - if @results.nil?
         #results
-          - 25.times do
+          - 5.times do
+            %p &nbsp;
+          #hero 
+            Use Yum to search the whole web for the tastiest videos.
+          - 15.times do
             %p &nbsp;
       - unless @results.nil?
         #results
