@@ -60,7 +60,7 @@ end
 
 
 def search_truveo(query, page=1, page_size=10)
-  t = Truveo.new(CONFIG['truveo-key'])
+  t = Truveo.new(TRUVEO_KEY)
   # query = "nfl:season_type=POST" if query.nil?
   page = 1 if page.nil?
   start =  (page.to_i * page_size.to_i) - 10
