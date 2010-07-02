@@ -52,8 +52,10 @@ get '/*' do
   haml :search
 end
 
+require 'yaml'
+config = YAML::load(File.open('keys.yaml'))
 def search_truveo(query, page=1, page_size=10)
-  t = Truveo.new("08f3e5e3670ce918d")
+  t = Truveo.new(config['truveo-key'])
   # query = "nfl:season_type=POST" if query.nil?
   page = 1 if page.nil?
   start =  (page.to_i * page_size.to_i) - 10
