@@ -4,11 +4,12 @@ require 'haml'
 require 'sass'
 require 'truveo'
 
-# require 'yaml'
-# CONFIG = YAML::load(File.open('keys.yaml'))
-# p CONFIG
-
-TRUVEO_KEY = ENV['TRUVEO_KEY']
+unless ENV['TRUVEO_KEY']  
+  require 'yaml'
+  CONFIG = YAML::load(File.open('keys.yaml'))
+  TRUVEO_KEY = CONFIG['truveo-key']
+end
+TRUVEO_KEY ||= ENV['TRUVEO_KEY']
 
 get '/stylesheet.css' do
   content_type 'text/css', :charset => 'utf-8'
