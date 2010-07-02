@@ -4,6 +4,10 @@ require 'haml'
 require 'sass'
 require 'truveo'
 
+require 'yaml'
+CONFIG = YAML::load(File.open('keys.yaml'))
+p CONFIG
+
 get '/stylesheet.css' do
   content_type 'text/css', :charset => 'utf-8'
   sass :stylesheet
@@ -52,10 +56,9 @@ get '/*' do
   haml :search
 end
 
-require 'yaml'
-config = YAML::load(File.open('keys.yaml'))
+
 def search_truveo(query, page=1, page_size=10)
-  t = Truveo.new(config['truveo-key'])
+  t = Truveo.new(CONFIG['truveo-key'])
   # query = "nfl:season_type=POST" if query.nil?
   page = 1 if page.nil?
   start =  (page.to_i * page_size.to_i) - 10
