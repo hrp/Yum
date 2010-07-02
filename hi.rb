@@ -7,9 +7,9 @@ require 'truveo'
 unless ENV['TRUVEO_KEY']  
   require 'yaml'
   CONFIG = YAML::load(File.open('keys.yaml'))
-  TRUVEO_KEY = CONFIG['truveo-key']
+  ENV['TRUVEO_KEY'] = CONFIG['truveo-key']
 end
-TRUVEO_KEY ||= ENV['TRUVEO_KEY']
+TRUVEO_KEY = ENV['TRUVEO_KEY']
 
 get '/stylesheet.css' do
   content_type 'text/css', :charset => 'utf-8'
